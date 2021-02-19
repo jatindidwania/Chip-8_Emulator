@@ -10,6 +10,8 @@
   background-position: center;
   background-size: cover;
   position: relative;
+  padding-top: 30px;
+  box-sizing: border-box;
 }
 .navbar{
   width: 100%;
@@ -21,8 +23,68 @@
   box-sizing: border-box;
 }
 .logo{
-  width: 30px;
+  width: 155px;
+}
+
+.logo img{
+  width: 40px;
   position: relative;
   z-index: 10;
   cursor: pointer;
+}
+nav{
+  flex: 1;
+}
+nav ul li{
+  list-style: none;
+  display: inline-block;
+  margin-right: 60px;
+}
+
+nav ul li a{
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+}
+
+.user{
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 14px;
+}
+.user img{
+  width: 30px;
+  margin-left: 15px;
+  cursor: pointer;
+}
+.sidebar{
+  width: 155px;
+  height: 100vh;
+  background: rgba(29, 31, 58, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.search-icon{
+  width: 20px;
+  display: block;
+  margin: 120px; auto 0;
+}
+.social-links{
+  width: 20px;
+  display: block;
+  margin: 220px auto 0;
+  text-align: center;
+}
+.social-links img{
+  height: 15px;
+  margin-bottom: 30px;
+}
+.info-icon{
+  width: 20px;
+  position: absolute;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
 }
