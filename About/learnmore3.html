@@ -29,17 +29,82 @@ h2 {
 </head>
 
 <body>
-<h1>About Chip-8</h1>
+<h1>Specifications</h1>
 
-<h2>The Restaurant</h2>
-<p>The Black Goose Bistro offers casual lunch and dinner fare in a hip atmosphere. The menu changes regularly to highlight the freshest ingredients.
-  </p>
+<h2>CHIP-8 has the following components:</h2>
+<p>
+  <ul>
+    <li>Memory: CHIP-8 has direct access to up to 4 kilobytes of RAM.</li><br>
+    <li>Display: 64 x 32 pixels (or 128 x 64 for SUPER-CHIP)<br> monochrome, ie. black or white</li><br>
+    <li>A program counter, often called just “PC”, which points at<br> the current instruction in memory</li><br>
+    <li>One 16-bit index register called “I” which is used to<br> point at locations in memory</li><br>
+    <li>A stack for 16-bit addresses, which is used to call<br> subroutines/functions and return from them</li><br>
+    <li>An 8-bit delay timer which is decremented at a<br> rate of 60 Hz (60 times per second) until it reaches 0</li><br>
+    <li>An 8-bit sound timer which functions like the delay timer,<br> but which also gives off a beeping sound as long as it’s not 0</li><br>
+    <li>16 8-bit (one byte) general-purpose variable registers numbered 0<br> through F hexadecimal, ie. 0 through 15 in decimal, called V0 through `VF</li><br>
+    <li>VF is also used as a flag register; many instructions will set it to<br> either 1 or 0 based on some rule, for example using it as a carry flag</li><br>
 
-<h2>Catering</h2>
-<p>You have fun... we'll do the cooking. Black Goose catering can handle events from snacks for bridge club to elegant corporate fundraisers.
-  </p>
-<h2>Location and Hours</h2>
- <p>Seekonk, Massachusetts; Monday through Thursday 11am to 9pm, Friday and Saturday, 11am to midnight.</p>
+  </ul>
+</p>
+
+<h2>Memory</h2>
+<p>The memory should be 4 kB (4 kilobytes, ie. 4096 bytes) large.<br>
+   CHIP-8’s index register and program counter can only address 12 bits (conveniently), which is 4096 addresses.<br><br>
+ <em>Both the index register, program counter and stack entries are actually 16 bits long.<br>
+    In theory, they could increment beyond 4 kB of memory addresses.<br>
+     In practice, no CHIP-8 games do that. The early computers running CHIP-8 usually had less than 4 kB of RAM anyway.</em><br><br>
+     All the memory is RAM and should be considered to be writable.<br>
+      CHIP-8 games can, and do, modify themselves.<br><br>
+    <em>CHIP-8 programs you find online as binary files are often called “ROMs”,<br> like game files for video game emulators, but unlike games on console cartridges<br> they were not actually ROM (which means “read-only memory”).</em><br><br>
+    The first CHIP-8 interpreter (on the COSMAC VIP computer) was also located in RAM,<br>
+     from address 000 to 1FF. It would expect a CHIP-8 program to be loaded into memory after it,
+     <br> starting at address 200 (512 in decimal).<br>
+      Although modern interpreters are not in the same memory space, you should do the same to be able to run the old programs;<br>
+       you can just leave the initial space empty, except for the font.<br><br>
+</p>
+<h2>Fonts</h2>
+ <p>The CHIP-8 emulator should have a built-in font,<br> with sprite data representing the hexadecimal numbers from 0 through F.<br>
+    Each font character should be 4 pixels wide by 5 pixels tall.<br>
+    These font sprites are drawn just like regular sprites (see below).<br><br>
+    You should store the font data in memory, because games will draw these characters like regular sprites:<br>
+     They set the index register I to the character’s memory location and then draw it.<br>
+      There’s a special instruction for setting I to a character’s address, so you can choose where to put it.<br>
+       Anywhere in the first 512 bytes (000–1FF) is fine. For some reason,<br>
+        it’s become popular to put it at 050–09F, so you can follow that convention if you want.<br><br>
+        The font most people use is represented in bytes like this:<br><br>
+        <p style='color: white'>
+        <span style="background-color: #808080">
+        0xF0, 0x90, 0x90, 0x90, 0xF0, // 0<br><br>
+0x20, 0x60, 0x20, 0x20, 0x70, // 1<br><br>
+0xF0, 0x10, 0xF0, 0x80, 0xF0, // 2<br><br>
+0xF0, 0x10, 0xF0, 0x10, 0xF0, // 3<br><br>
+0x90, 0x90, 0xF0, 0x10, 0x10, // 4<br><br>
+0xF0, 0x80, 0xF0, 0x10, 0xF0, // 5<br><br>
+0xF0, 0x80, 0xF0, 0x90, 0xF0, // 6<br><br>
+0xF0, 0x10, 0x20, 0x40, 0x40, // 7<br><br>
+0xF0, 0x90, 0xF0, 0x90, 0xF0, // 8<br><br>
+0xF0, 0x90, 0xF0, 0x10, 0xF0, // 9<br><br>
+0xF0, 0x90, 0xF0, 0x90, 0x90, // A<br><br>
+0xE0, 0x90, 0xE0, 0x90, 0xE0, // B<br><br>
+0xF0, 0x80, 0x80, 0x80, 0xF0, // C<br><br>
+0xE0, 0x90, 0x90, 0x90, 0xE0, // D<br><br>
+0xF0, 0x80, 0xF0, 0x80, 0xF0, // E<br><br>
+0xF0, 0x80, 0xF0, 0x80, 0x80  // F<br><br><br>
+</span>
+</p>
+</p>
+
+<h2>Display</h2>
+<p>
+  The original implementation of the Chip-8 language used a 64x32-pixel monochrome display with this format:<br><br>
+  
+
+
+</p>
+
+
+
+
 </body>
 
 </html>
