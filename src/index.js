@@ -1,5 +1,5 @@
 import Monitor from './Monitor';
-import Chip8 from './Chip8';
+import Chip8 from './chip8';
 import Keyboard from './Keyboard';
 import Speaker from './Speaker';
 import './style.css';
@@ -42,7 +42,7 @@ function loadROM(romName) {
         loop = requestAnimationFrame(step);
 
     }
-    const url = `/rom/${romName}`;
+    const url = `/roms/${romName}`;
     reloadButton.disabled = true;
     loadingText.innerHTML = 'Loading ' + romName + ' ... ';
 
